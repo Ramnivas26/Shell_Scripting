@@ -1,4 +1,4 @@
-resource "local_file" "myfile-1"{
+resource "local_file" "myfile-2"{
 	filename	= "/root/newfile.txt"
-	content		= "The content is changed on second time "
+	content		= "The content is changed on Third time "
 }
