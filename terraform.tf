@@ -1,6 +1,7 @@
 provider "aws" {
   region  = "ap-south-1"
 }
+
 resource "aws_vpc" "myvpc" {
   cidr_block       = "10.0.0.0/16"
   
@@ -9,6 +10,7 @@ resource "aws_vpc" "myvpc" {
     Name = "terraformvpc"
   }
 }
+
 resource "aws_subnet" "publicsubnet" {
   vpc_id     = "${aws_vpc.myvpc.id}"
   cidr_block = "10.0.1.0/24"
@@ -17,7 +19,9 @@ resource "aws_subnet" "publicsubnet" {
     Name = "public1"
   }
 
-}resource "aws_internet_gateway" "igw" {
+}
+
+resource "aws_internet_gateway" "igw" {
    vpc_id = "${aws_vpc.myvpc.id}"
 
   tags = {
@@ -25,6 +29,7 @@ resource "aws_subnet" "publicsubnet" {
   }
 
 }
+
 resource "aws_route_table" "publicrt" {
   vpc_id = "${aws_vpc.myvpc.id}"
 
@@ -38,6 +43,7 @@ resource "aws_route_table" "publicrt" {
   }
 
 }
+
 resource "aws_route_table_association" "publicassociation" {
   subnet_id      = "${aws_subnet.publicsubnet.id}"
   route_table_id = "${aws_route_table.publicrt.id}"
@@ -71,6 +77,7 @@ resource "aws_security_group" "allow_all" {
   }
 
 }
+
 resource "aws_instance" "jumpbox"{
   ami                    = "ami-074dc0a6f6c764218"
   instance_type          = "t2.micro"
