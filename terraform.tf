@@ -1,4 +1,4 @@
-resource "local_file" "myfile-11"{
-	filename	= "trail-1.txt"
-	content		= "The content is changed on eleventh time "
+resource "local_file" "myfile-12"{
+	filename	= "trail-0.txt"
+	content		= "The content is changed on Final time "
 }
